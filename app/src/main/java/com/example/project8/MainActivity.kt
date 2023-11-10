@@ -128,11 +128,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sendFeedbackEmail() {
-        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+        val emailIntent = Intent(Intent.ACTION_SEND).apply {
             data = Uri.parse("mailto:")
             putExtra(Intent.EXTRA_EMAIL, arrayOf("lukeyarian0617@gmail.com"))
             putExtra(Intent.EXTRA_SUBJECT, "Feedback")
         }
+        emailIntent.setType("text/plain")
         if (emailIntent.resolveActivity(packageManager) != null) {
             startActivity(emailIntent)
         } else {
